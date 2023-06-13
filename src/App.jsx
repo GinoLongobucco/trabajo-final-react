@@ -1,15 +1,9 @@
-import Footer from "./Footer";
-import Navbar from "./Navbar";
-import ProductList from "./ProductsList";
 
 function App() {
 
-
   return (
     <div>
-      <Navbar />
-      <ProductList />
-      <Footer />
+      <h1>Este es el app</h1>
     </div>
   );
 }
