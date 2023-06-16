@@ -1,27 +1,38 @@
+import { ThemeProvider } from "@emotion/react";
+import Material from "./components/pages/material/Material";
+import MaterialComponents from "./components/pages/material/MaterialComponents";
+import { customTheme, customThemeDark } from "./themeConfig";
 import { useState } from "react";
-import Navbar from "./components/layout/navbar/Navbar";
-import HomeContainer from "./components/pages/home/HomeContainer";
-import ItemListContainer from "./components/pages/itemList/ItemListContainer";
+import ModeNightIcon from "@mui/icons-material/ModeNight";
+import LightModeIcon from "@mui/icons-material/LightMode";
 
 function App() {
-  const [nombre, setNombre] = useState("oscar");
+  const [isDark, setIsDark] = useState(false);
 
-  const saludo = "Hola como estas? Espero que muy bien!"
+  const changeMode = () => {
+    setIsDark(!isDark);
+  };
 
   return (
-    <div>
-      <Navbar />
-      <button onClick={() => setNombre("fulanito")}>Cambiar nombre</button>
-      <HomeContainer nombre={nombre} />
-      <ItemListContainer saludo={saludo} />
-    </div>
+    <ThemeProvider theme={isDark ? customThemeDark : customTheme}>
+      <div>
+        {/* <Material /> */}
+        <MaterialComponents />
+
+        {/* <button onClick={changeMode}>Cambiar modo</button> */}
+
+        {isDark === true ? (
+          <div onClick={changeMode}>
+            <LightModeIcon />
+          </div>
+        ) : (
+          <div onClick={changeMode}>
+            <ModeNightIcon />
+          </div>
+        )}
+      </div>
+    </ThemeProvider>
   );
 }
 
 export default App;
-
-// const sumar = ( numero )=>{
-
-// }
-
-// home(25)
