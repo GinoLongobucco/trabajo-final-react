@@ -1,11 +1,9 @@
-
-const ItemList = ({apellido, saludo}) => {
+const ItemList = () => {
   return (
     <div>
-        <h1>{apellido}</h1>
-        <h2>{saludo}</h2>
+      <h1>Aca van los items</h1>
     </div>
-  )
-}
+  );
+};
 
-export default ItemList
+export default ItemList;
