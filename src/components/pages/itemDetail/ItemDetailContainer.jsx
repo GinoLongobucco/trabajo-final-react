@@ -1,15 +1,18 @@
 import { useEffect, useState } from "react";
 import ItemDetail from "./ItemDetail";
 import { products } from "../../../productsMock";
+import { useParams } from "react-router-dom"
+
 const ItemDetailContainer = () => {
   const [product, setProduct] = useState({});
 
-  let id = 1
+  let {id} = useParams()
 
+  
   useEffect(()=>{
 
     let promesa = new Promise( (resolve, reject)=>{
-      let productSelected = products.find((product)=> product.id === id)
+      let productSelected = products.find((product)=> product.id === +id)
       resolve(productSelected)
     })
 
@@ -30,3 +33,8 @@ const ItemDetailContainer = () => {
 };
 
 export default ItemDetailContainer;
+
+
+// Number("12") ---> 12
+// parseInt("12") --->12
+// +"12" --->12
