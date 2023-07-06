@@ -20,7 +20,7 @@
     align-items: center;
     gap: 20px;
   }
-  .categories li {
+  .categories a {
     background-color: beige;
     padding: 10px 20px;
     color: #7F669D;
@@ -28,5 +28,7 @@
     display: flex;
     justify-content: center;
     border-radius: 10px;
+    text-decoration: none;
+
   }
   
