@@ -1,20 +1,24 @@
 import { useState, useEffect } from "react";
 import { products } from "../../../productsMock";
 import ItemList from "./ItemList";
-
+import ClimbingBoxLoader from "react-spinners/ClimbingBoxLoader";
 import { useParams } from "react-router-dom";
+import { Skeleton, Stack } from "@mui/material";
 
 const ItemListContainer = () => {
   const [items, setItems] = useState([]);
 
-  const {categoryName} = useParams()
+  const { categoryName } = useParams();
 
   useEffect(() => {
-
-    let productosFiltrados = products.filter( elemento => elemento.category === categoryName)
+    let productosFiltrados = products.filter(
+      (elemento) => elemento.category === categoryName
+    );
 
     const tarea = new Promise((resolve, reject) => {
-      resolve( categoryName ? productosFiltrados : products );
+      setTimeout(() => {
+        resolve(categoryName ? productosFiltrados : products);
+      }, 1000);
       // reject("salio todo mal")
     });
 
@@ -25,7 +29,24 @@ const ItemListContainer = () => {
     // .finally(()=>console.log("hola"))
   }, [categoryName]);
 
-  return <ItemList items={items} />;
+  // if(items.length === 0){
+  //   return <h1>Cargando....</h1>
+  // }
+
+  return (
+    <>
+      <h1>Aca van los productos</h1>
+
+      {/* {items.length === 0 ? (
+        <ClimbingBoxLoader color="steelblue" />
+      ) : (
+        <ItemList items={items} />
+      )} */}
+        
+    
+        <ItemList items={items} />
+    </>
+  );
 };
 
 export default ItemListContainer;
