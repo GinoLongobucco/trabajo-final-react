@@ -3,6 +3,7 @@ import ItemDetailContainer from "../components/pages/itemDetail/ItemDetailContai
 import CartContainer from "../components/pages/cart/CartContainer";
 import CheckoutContainer from "../components/pages/checkout/CheckoutContainer";
 import FormFormik from "../components/pages/formFormik/FormFormik";
+import Dashboard from "../components/pages/dashboard/Dashboard";
 export const routes = [
   {
     id: "home",
@@ -33,5 +34,10 @@ export const routes = [
     id: "formik",
     path: "/formik",
     Element: FormFormik,
+  },
+  {
+    id: "dashboard",
+    path: "/dashboard",
+    Element: Dashboard,
   },
 ];

@@ -13,6 +13,8 @@ const Navbar = () => {
         <Link to="/category/urbanas">Urbanas</Link>
       </ul>
 
+      <Link to="/dashboard">ADMIN</Link>
+
       <CartWidget />
     </div>
   );
