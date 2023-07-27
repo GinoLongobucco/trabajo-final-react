@@ -3,7 +3,7 @@ import "./Navbar.css";
 import { Link } from "react-router-dom";
 
 const Navbar = () => {
-  let userRol = "admin";
+  let userRol = "user";
 
   return (
     <div className={"containerNavbar"}>

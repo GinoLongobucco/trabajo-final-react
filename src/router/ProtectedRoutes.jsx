@@ -1,7 +1,7 @@
 import { Outlet, Navigate } from "react-router";
 
 const ProtectedRoutes = () => {
-    let userRol = "admin"
+    let userRol = "user"
 
   return (
     <div>

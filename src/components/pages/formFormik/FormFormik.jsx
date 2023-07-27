@@ -1,19 +1,41 @@
 import { Button, TextField } from "@mui/material";
 import { useFormik } from "formik";
-import { useState } from "react";
+import { useContext, useState } from "react";
 import * as Yup from "yup";
+import { CartContext } from "../../../context/CartContext";
+import { addDoc, collection, doc, serverTimestamp, updateDoc } from "firebase/firestore";
+import { db } from "../../../firebaseConfig";
 
 const FormFormik = () => {
-    const [showPassword, setShowPassword] =useState(false)
+  const [showPassword, setShowPassword] = useState(false);
+  const { cart, getTotalPrice } = useContext(CartContext);
+  const [orderId, setOrderId] = useState("");
+
+  let total = getTotalPrice();
 
   const { handleSubmit, handleChange, errors } = useFormik({
     initialValues: {
       name: "",
       email: "",
-      password: "",
-      repet: "",
+      phone: "",
     },
     onSubmit: (data) => {
+     
+      let order = {
+        buyer: data,
+        items: cart,
+        total,
+        date: serverTimestamp(),
+      };
+      let ordersCollections = collection(db, "orders");
+      addDoc(ordersCollections, order).then((res) => setOrderId(res.id));
+
+      // MODIFICAR TODOS LOS PRODUCTOS EN SU STOCK
+      cart.forEach((elemento) => {
+        updateDoc(doc(db, "products", elemento.id), {
+          stock: elemento.stock - elemento.quantity,
+        });
+      });
     },
     validationSchema: Yup.object({
       name: Yup.string()
@@ -23,21 +45,15 @@ const FormFormik = () => {
       email: Yup.string()
         .email("No corresponde a un email valido")
         .required("Este campo es obligatorio"),
-      password: Yup.string()
-        .required("Este campo es obligatorio")
-        .matches(/^(?=.*\d)(?=.*[!@#$%^&*])(?=.*[a-z])(?=.*[A-Z]).{6,15}$/, {
-          message: "La contraseña debe tener al menos 1 mayuscula etc etc ",
-        }),
-      repet: Yup.string()
-        .required("Este campo es obligatorio")
-        .oneOf([Yup.ref("password")], "Las contraseñas no coinciden"),
+      phone: Yup.string().required("Este campo es obligatorio"),
     }),
     validateOnChange: false,
   });
 
   return (
     <div style={{ padding: "40px" }}>
-      <form onSubmit={handleSubmit}>
+      {
+        !orderId ? <form onSubmit={handleSubmit}>
         <TextField
           label="Nombre"
           variant="outlined"
@@ -60,27 +76,21 @@ const FormFormik = () => {
           type={showPassword ? "text" : "password"}
           label="Pass"
           variant="outlined"
-          name="password"
+          name="phone"
           onChange={handleChange}
           error={errors.password ? true : false}
           helperText={errors.password}
-        />
-        <TextField
-          type="text"
-          label="Repet"
-          variant="outlined"
-          name="repet"
-          onChange={handleChange}
-          error={errors.repet ? true : false}
-          helperText={errors.repet}
         />
 
         <Button type="submit" variant="contained">
           Enviar
         </Button>
 
-        <button type="button" onClick={()=>setShowPassword(!showPassword)}>Mostrar/ocultar</button>
-      </form>
+        <button type="button" onClick={() => setShowPassword(!showPassword)}>
+          Mostrar/ocultar
+        </button>
+      </form> : <h1>la orden es {orderId}</h1>
+      }
     </div>
   );
 };
