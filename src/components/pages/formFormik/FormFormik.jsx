@@ -14,7 +14,6 @@ const FormFormik = () => {
       repet: "",
     },
     onSubmit: (data) => {
-      console.log(data);
     },
     validationSchema: Yup.object({
       name: Yup.string()
