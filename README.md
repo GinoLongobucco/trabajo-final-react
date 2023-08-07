@@ -7,11 +7,12 @@ Asegúrate de tener [Node.js](https://nodejs.org/) instalado en tu sistema antes
 2. Navega al directorio del proyecto con `cd trabajo-final-react`.
 3. Instala las dependencias con `npm install`.
 ## Características
-Enumera las principales características de tu proyecto de React:
+Tecnologias utilizadas:
 - React
 - Vite
 - MUI
 - Formik
+- FireBase
 ## Contacto
 Si tienes alguna pregunta o inquietud relacionada con el proyecto, puedes contactarme a través de [correo electrónico](mailto:gino_longob@hotmail.com)
 ---
