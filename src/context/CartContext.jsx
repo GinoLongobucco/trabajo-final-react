@@ -35,7 +35,6 @@ const CartContextComponent = ({ children }) => {
     setCart(newArr);
   };
 
-  // RETORNE EL TOTAL DE CANTIDADES
   const getTotalQuantity = ()=>{
     
     let total = cart.reduce( (acc, elemento)=>{
@@ -46,8 +45,6 @@ const CartContextComponent = ({ children }) => {
   }
 
 
-  // RETORNE EL TOTAL DEL PRECIO
-
   const getTotalPrice = ()=>{
     let total = cart.reduce( (acc, elemento)=>{
       return acc + (elemento.price * elemento.quantity)
@@ -55,13 +52,11 @@ const CartContextComponent = ({ children }) => {
     return total
   }
 
-  // dado un id, saber las cantidades que hay
 
   const getQuantityById = (id)=>{
 
     let producto = cart.find( (elemento)=> elemento.id === +id )
 
-    // return producto ? producto.quantity : producto
     return producto?.quantity
   }
 

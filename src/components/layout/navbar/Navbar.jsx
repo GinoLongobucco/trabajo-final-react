@@ -11,8 +11,8 @@ const Navbar = () => {
 
       <ul className="categories">
         <Link to="/">Todas</Link>
-        <Link to="/category/deportivas">Deportivas</Link>
-        <Link to="/category/urbanas">Urbanas</Link>
+        <Link to="/category/juego">Juegos</Link>
+        <Link to="/category/libro">Libros</Link>
       </ul>
 
       {userRol === "admin" && <Link to="/dashboard">ADMIN</Link>}

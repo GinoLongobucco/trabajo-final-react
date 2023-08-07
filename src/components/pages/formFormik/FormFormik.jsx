@@ -30,7 +30,6 @@ const FormFormik = () => {
       let ordersCollections = collection(db, "orders");
       addDoc(ordersCollections, order).then((res) => setOrderId(res.id));
 
-      // MODIFICAR TODOS LOS PRODUCTOS EN SU STOCK
       cart.forEach((elemento) => {
         updateDoc(doc(db, "products", elemento.id), {
           stock: elemento.stock - elemento.quantity,

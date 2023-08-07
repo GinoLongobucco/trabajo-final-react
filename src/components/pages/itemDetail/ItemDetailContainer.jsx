@@ -57,6 +57,3 @@ const ItemDetailContainer = () => {
 
 export default ItemDetailContainer;
 
-// Number("12") ---> 12
-// parseInt("12") --->12
-// +"12" --->12
