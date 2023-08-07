@@ -1,5 +1,5 @@
 
-# Nombre del Proyecto
+# Entrega Final - Tienda CIP
 > Este proyecto representa la entrega final de un trabajo desarrollado como parte del curso en la plataforma de Coderhouse.  Poniendo en práctica los conocimientos adquiridos durante el curso para crear una aplicación de e-commerce. A lo largo del proceso, e utilizado tecnologías como React y Firebase para lograr una solución funcional y efectiva. ¡Espero que disfrutes explorando mi trabajo final! .
 ## Uso
 Asegúrate de tener [Node.js](https://nodejs.org/) instalado en tu sistema antes de seguir estos pasos.
